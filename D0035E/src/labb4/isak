@@ -162,3 +162,87 @@ Exception in thread "main" java.util.NoSuchElementException: Det finns inga elem
 	at D0035E/labb4.DubbellänkadLista.taBortFörsta(DubbellänkadLista.java:86)
 	at D0035E/labb4.Stack.pop(Stack.java:30)
 	at D0035E/labb4.Fil.main(Fil.java:124)
+
+
+package labb4;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+
+public class FilQueque {
+	private Queue<String> män; 
+
+	public FilQueque() {
+		// TODO Auto-generated constructor stub
+		män = new Queue<>(); //initiserar män
+		
+		// /D0035E/src/labb4/persondata-1.txt
+
+		
+		
+	
+	}
+
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub	
+		Queue<String> män = new Queue<>(); //skapar ett objekt av klassen Queque med String som typ pga txt fil. 
+		
+		// Scanner sc = new Scanner(System.in); //scanner användar jag så användaren kan skriva in filsökvägen i terminalen
+		// System.out.println("Skriv in filsökvägen:"); 
+		
+		// String filInput = sc.nextLine(); //returnerar endast det som användaren skriver in till variabeln filInput
+		// sc.close(); //stänger scannern   
+		
+		
+	
+		
+		try {
+			FileReader filLäs = new FileReader(Fil.användareInputFilsökväg()); //filereader flr att läsa filen skapar ett objekt av det, tar in filsökvägen som använderen skriver in. Anropar scanner metoden från filklassen. 
+			BufferedReader läsaren = new BufferedReader(filLäs);  
+			läsaren.read(); //läser en rad. Om en rad innehåller 
+			String line;  // denna ska hålla varje rad med text som vi läsar.  
+
+			while ((line = läsaren.readLine()) != null) { // Ska läsa en line av text från input filen, och placera den line av text till line variabeln, när någgon rad inte finns komemr den att avsluta loopen.
+				
+				if (Fil.kvinna(line)) {
+					System.out.println(line); // skriver ut alla kvinnor
+				} else {
+					män.add(line); //Om det inte är en kvinna så ska den addera varje man (ojämn näst sista siffra). till män. 
+					
+					
+					
+				}
+			}
+			
+			System.out.println("\n"); //nu ska jag göra så att männen hamnar 
+			// nu ska jag printa ut männen. 
+			
+				
+			
+		
+		
+		
+		
+		
+			} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+		} //Använder Filereaderför att läsa filen skapar ett objekt av det, som tar in filsökvägen som användaren skriver in, sparrar i referensen läs. 
+		//Använder bufferreader. Läser in filen. 
+		
+		
+		
+
+		
+		
+		
+
+
+	}
+}
+
