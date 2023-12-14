@@ -183,14 +183,14 @@ public class FilQueque {
 		// /D0035E/src/labb4/persondata-1.txt
 
 		
-		
-	
+
 	}
 
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub	
 		Queue<String> män = new Queue<>(); //skapar ett objekt av klassen Queque med String som typ pga txt fil. 
+		
 		
 		// Scanner sc = new Scanner(System.in); //scanner användar jag så användaren kan skriva in filsökvägen i terminalen
 		// System.out.println("Skriv in filsökvägen:"); 
@@ -203,7 +203,7 @@ public class FilQueque {
 		
 		try {
 			FileReader filLäs = new FileReader(Fil.användareInputFilsökväg()); //filereader flr att läsa filen skapar ett objekt av det, tar in filsökvägen som använderen skriver in. Anropar scanner metoden från filklassen. 
-			BufferedReader läsaren = new BufferedReader(filLäs);  
+			BufferedReader läsaren = new BufferedReader(filLäs);  // 
 			läsaren.read(); //läser en rad. Om en rad innehåller 
 			String line;  // denna ska hålla varje rad med text som vi läsar.  
 
@@ -219,8 +219,21 @@ public class FilQueque {
 				}
 			}
 			
-			System.out.println("\n"); //nu ska jag göra så att männen hamnar 
+			System.out.println(); //gör ett radavstånd
 			// nu ska jag printa ut männen. 
+			String slutet = "Slutet på kön"; //skapar en sträng variabel för att markera när det är slut på det som ska tas bort. 
+			
+			
+			while(true) { // så länge som detta är sant. 
+				String datan = män.remove(); //ska den ta bort alla män och returnera alla män som togs bort till datan. Flrsta mannen som kommer in, åker ut först. FIFO
+				
+				if (datan.equals(slutet)) {
+					break; //avsluta när det som ska tas bort är lika med strängen "slutet"
+				}
+				System.out.println(datan); //printar ut alla män som togs bort. 
+				
+				
+			}
 			
 				
 			
@@ -232,9 +245,7 @@ public class FilQueque {
 			} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 				e.printStackTrace();
-		} //Använder Filereaderför att läsa filen skapar ett objekt av det, som tar in filsökvägen som användaren skriver in, sparrar i referensen läs. 
-		//Använder bufferreader. Läser in filen. 
-		
+		} 
 		
 		
 
@@ -245,4 +256,25 @@ public class FilQueque {
 
 	}
 }
+
+
+Skriv in filsökvägen:
+/D0035E/src/labb4/persondata-1.txt
+19860115-1783 Anna Kajsa Karlsson
+20011024-9844 Elisabet Ida Andersson
+19960205-2442 Solveig Lotta Thelander
+20040421-3829 Gunbritt Bergman
+19800504-6084 Marja Aino Sundström
+19580928-5843 Gustava Kvarnström
+19660427-4362 Kristin Petra Burman
+
+0030816-5539 Johan Herman af Ugglas
+19971224-1836 Hans Peter Bildt
+19690814-2190 Tor Gustav Ödman
+19700123-8471 Kevin Nils Simonsson
+19941018-7075 Kjell Tony Landberg
+19650810-0234 Natanael Samuelsson                    
+Exception in thread "main" java.util.NoSuchElementException: Kön är tom
+	at D0035E/labb4.Queue.remove(Queue.java:62)
+	at D0035E/labb4.FilQueque.main(FilQueque.java:62) 
 
