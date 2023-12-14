@@ -1,0 +1,78 @@
+package labb4;
+
+import java.util.NoSuchElementException;
+
+public class Queue<E> { //denna kö kan jobba med vilka typer som helst <E>
+	
+	
+	//FIFO
+	
+	private DubbellänkadLista<E> dubbellänkadLista; //Deklarerar fältet fån DubbellänkadLista till dubbellänkadLista. privat fält(som vnaligt) som fungerar internt med den implementerade DubbelLänkade Listan.  dubbellänkadLista
+	
+	
+
+	public Queue() { //en ny instans av klassen skapas. Konstruötiuren. 
+		// TODO Auto-generated constructor stub
+		
+		
+		dubbellänkadLista = new DubbellänkadLista<E>(); //Intiierar fälten Initierar kö objektet dubbellänkadLista med ett starttillstånd. Dubbellänkad list ar tom redo för element att läggas in. tom kö-  
+
+	
+	
+	}
+	
+	public boolean add(E element)  {
+		
+		if (element == null) { // kontrollerar så att inget element som inte innehåller något adderas. Om ett element är null så ska det ej kracha. 
+			throw new NullPointerException(); 
+		}
+		
+		//Addera element till Listan. FIFO. Lägger till element sist i listan. 
+		dubbellänkadLista.läggTillSist(element); //FIFO. Nya element adderas alltid till slutet av kön. Den förata som kommer in ska ju först ut. Tas bort lägngst fram
+		
+		return true; //RETURNERAR true för att indikera på att add var lyckat. 
+		
+		
+		
+	
+		
+		
+	}
+	
+	//add, element och remove 
+	
+	public E element() { //syftte med denna är att hämta det första elemnentet i kön "head". När man vill kunna se var i kön det första elementet i kön befinner sig. 
+		if (dubbellänkadLista.längd() == 0) { //Innan man vill komma åt element måste man kontrollera att kön är tom. Om den faktiska kön med elemnent är 0, kastar den metoden och ger error, finns inge element alltså. 
+			throw new NoSuchElementException("Kön är tom"); 
+			
+		} else {
+			// första noden i DubbelLänkad Listan är en header/dummy nod, som innehåller "null" element. Första riktiga elementet är alltså i noden efter den första startnoden. 
+			E detFörstaElementet = dubbellänkadLista.start.nästa.element; // Start är "header noden", används bara för att konna referara till första riktiga elementet.  "nästa" är pointern/referens till noden efter, sedan vill vi komma åt elementet i den första riktiga noden. 
+			return detFörstaElementet; //Returnerar /hämtar "headern" det första elementet. 
+		}
+		
+		
+		
+	}
+	
+	public E remove() { //ta bort elementet som är längst fram i kön. Och ska retuenrar det första elementet i kön (det elementet som lades in först och som inte har tagits bort ännu)
+		if(dubbellänkadLista.längd() == 0) {
+			throw new NoSuchElementException("Kön är tom"); 
+		} else {
+			E taBort = dubbellänkadLista.taBortFörsta(); // tar bort första elementet i listan
+			return taBort; //returnerar elementet som togs bort. 
+		}
+	}
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// gör uppgift 3 här. Nu blir ordningen av männen rätt på en gång. 
+		
+		
+
+	}
+
+}
